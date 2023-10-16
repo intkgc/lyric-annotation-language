@@ -17,6 +17,14 @@ public class Token {
         this.data = data;
     }
 
+    public TokenType getType() {
+        return type;
+    }
+
+    public String getData() {
+        return data;
+    }
+
     @Override
     public String toString() {
         String dataWithoutNL = data.replaceAll("\\n", "\\\\n");
