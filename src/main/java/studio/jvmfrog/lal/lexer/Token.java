@@ -1,7 +1,7 @@
-package studio.jvmfrog.lal.parser;
+package studio.jvmfrog.lal.lexer;
 
 public class Token {
-    private TokenType type;
+    private final TokenType type;
     private String data;
 
     public Token(TokenType type) {
@@ -19,6 +19,8 @@ public class Token {
 
     @Override
     public String toString() {
-        return type + "{'" + data + "'}";
+        String dataWithoutNL = data.replaceAll("\\n", "\\\\n");
+        String dataRes = dataWithoutNL.length() >= 6 ? dataWithoutNL.substring(0, 6).trim() + "..." : dataWithoutNL;
+        return dataRes + " : " + type;
     }
 }

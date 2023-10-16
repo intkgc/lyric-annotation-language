@@ -1,37 +1,23 @@
 package studio.jvmfrog.lal.test.parser;
 
 import org.junit.jupiter.api.Test;
-import studio.jvmfrog.lal.parser.LALParser;
-import studio.jvmfrog.lal.parser.Token;
+import studio.jvmfrog.lal.lexer.LALLexer;
+import studio.jvmfrog.lal.lexer.Token;
 
 public class TokenizerTest {
     String testInput = """
-            >>    ru
-            
+            >>ru
             #VERSE
-            @1-2:    Прикол
+            @1-1:аннотация для первой строки
             
-            ТЕКСТ ТЕСТ
-                        
-            #CHORUS
-            ПРИПЕВ
-            ПРИПЕВ
-            ПРИПЕВ
-            ПРИПЕВ
-            
-            >en
-            #VERSE
-            WOW english text
-            <
-            
-            #VERSE
-            Снова на русском
-            f
+            Я написал какой-то бред
+            Потому что я ленивый
+            @2: Аннотация для второй строки
             """;
 
     @Test
     void test1() {
-        LALParser parser = new LALParser();
+        LALLexer parser = new LALLexer();
         parser.tokenize(testInput);
         System.out.println("Global lang: " + parser.getGlobalLanguage());
         for(Token token : parser.getTokens()){
